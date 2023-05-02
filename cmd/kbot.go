@@ -54,6 +54,8 @@ to quickly create a Cobra application.`,
 			case "time":
 				timeStr := time.Now().Format("02.01.2006 15:04:05")
 				err = m.Send(fmt.Sprintln(timeStr))
+			case "boobs":
+				err = m.Send(fmt.Sprintln("(。 ㅅ 。)"))
 			}
 
 			return err
