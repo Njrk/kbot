@@ -1,6 +1,8 @@
 # kbot
 
-This is the Telegram bot.
+This is the Telegram bot.  
+
+Link to the bot: https://t.me/Njrk_bot  
 
 Usage:
 
