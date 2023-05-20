@@ -1,4 +1,4 @@
-FROM golang:1.20 as bulder
+FROM golang:1.20 as builder
 WORKDIR /go/src/app
 COPY . .
 RUN go get
