@@ -9,8 +9,8 @@ image:
   tag: "v1.0.2-9035e95"
   arch: amd64
 secret:
-  name: "kbot"
-  env: "TELE_TOKEN"
-  key: "token"
+  name: kbot-secret
+  tokenKey: token
+  tokenName: TELE_TOKEN
 securityContext:
   privileged: true
