@@ -3,10 +3,9 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-
 image:
   repository: njrk
-  tag: "v1.0.2-9035e95"
+  tag: "v1.0.2-9ddbe1b"
   arch: amd64
 secret:
   name: kbot-secret
