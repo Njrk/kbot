@@ -5,7 +5,7 @@
 replicaCount: 1
 image:
   repository: njrk
-  tag: "v1.0.2-9ddbe1b"
+  tag: "v1.0.2-4f51758"
   arch: amd64
 secret:
   name: kbot-secret
