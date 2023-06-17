@@ -1,5 +1,5 @@
 APP=$(shell basename $(shell git remote get-url origin) | cut -d '.' -f1)
-REGISTRY=njrk
+#REGISTRY=njrk
 VERSION=$(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HEAD)
 TARGETOS=linux #linux darwin windows
 TARGETARCH=amd64 #arm64 amd64
