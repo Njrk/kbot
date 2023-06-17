@@ -5,7 +5,7 @@
 replicaCount: 1
 image:
   repository: njrk
-  tag: "v1.0.2-9ddbe1b"
+  tag: "v1.0.2-ed9c9bd"
   os: linux
   arch: amd64
 secret:
