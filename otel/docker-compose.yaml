@@ -3,7 +3,7 @@ services:
 
   # Kbot
   kbot:
-    image: njrk/kbot:${VERSION}-linux-amd64
+    image: 
     environment:
       - METRICS_HOST=collector:4317
       - TELE_TOKEN=${TELE_TOKEN}
