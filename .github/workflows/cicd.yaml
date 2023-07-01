@@ -22,8 +22,11 @@ jobs:
             password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build&Push
         env:
-          APP: "kbot"
+          APP: "kbot"         
           REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
+          TARGETOS: ${{ vars.TARGETOS }}
+          TARGETOSARCH: ${{ vars.TARGETOSARCH }}
+          REPOSITORY: ${{ vars.REPOSITORY }}
         run: make image push
 
   cd:
@@ -36,12 +39,25 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - run: echo "VERSION=$(git describe --tags --abbrev=0)-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+    - run: |
+        echo "VERSION=$(git describe --tags --abbrev=0)-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+        echo "REGISTRY=${{ vars.REGISTRY }}" >> $GITHUB_ENV
+        echo "TARGETOS=${{ vars.TARGETOS }}" >> $GITHUB_ENV
+        echo "TARGETARCH=${{ vars.TARGETARCH }}" >> $GITHUB_ENV
+        echo "APP=${{ vars.APP }}" >> $GITHUB_ENV
 
     - uses: mikefarah/yq@master
       with:
-        cmd: yq -i '.image.tag=strenv(VERSION)' helm/values.yaml
-    
+        cmd: |
+          yq -i '.image.tag=strenv(VERSION)' helm/values.yaml
+          yq -i '.image.registry=strenv(REGISTRY)' helm/values.yaml
+          yq -i '.image.os=strenv(TARGETOS)' helm/values.yaml
+          yq -i '.image.arch=strenv(TARGETARCH)' helm/values.yaml
+          yq -i '.VERSION=strenv(VERSION)' otel/.env
+          yq -i '.REGISTRY=strenv(REGISTRY)' otel/.env
+          yq -i '.TARGETOS=strenv(TARGETOS)' otel/.env
+          yq -i '.TARGETARCH=strenv(TARGETARCH)' otel/.env
+          yq -i '.APP=strenv(APP)' otel/.env
     
     - run: |
         git config user.name github-actions
