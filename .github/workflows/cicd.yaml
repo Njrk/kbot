@@ -34,19 +34,14 @@ jobs:
     steps:
 
     - uses: actions/checkout@v3
-      env:
-          APP: "kbot"         
-          REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
-          TARGETOS: "amd64"
-          TARGETARCH: "linux"
       with:
         fetch-depth: 0
     - run: |
         echo "VERSION=$(git describe --tags --abbrev=0)-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-        echo "REGISTRY=${{ REGISTRY }}" >> $GITHUB_ENV
-        echo "TARGETOS=${{ TARGETOS }}" >> $GITHUB_ENV
-        echo "TARGETARCH=${{ TARGETARCH }}" >> $GITHUB_ENV
-        echo "APP=${{ APP }}" >> $GITHUB_ENV
+        echo "REGISTRY=${{ secrets.DOCKERHUB_USERNAME }}" >> $GITHUB_ENV
+        echo "TARGETOS=linux" >> $GITHUB_ENV
+        echo "TARGETARCH=amd64" >> $GITHUB_ENV
+        echo "APP=kbot" >> $GITHUB_ENV
 
     - uses: mikefarah/yq@master
       with:
