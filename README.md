@@ -1,10 +1,38 @@
-# kbot
+# Open-telemetry observability
 
-This is the Telegram bot.  
+Sample configuration for Kbot that send logs to [OpenTelemetry Collector] and metrics to [OpenTelemetry Collector] or [Prometheus].
 
-Link to the bot: https://t.me/Njrk_bot  
+## Prerequisites
 
-Usage:
+- [Docker]
+- [Docker Compose]
 
-/start time - prints the current time  
-/start hello - check bot version
+## How to run
+
+1. Add telegram token
+```bash
+read -s TELE_TOKEN
+export TELE_TOKEN
+```
+2. Add a password for Grafana
+```bash
+read -s GF_PASSWORD
+export GF_PASSWORD
+```
+3. Run docker-compose
+```bash
+docker-compose -f otel/docker-compose.yaml up -d
+```
+## Demo
+
+Created data sources:  
+![Data source](.data/gf1.png)
+
+Explore metrics Prometheus:  
+![Explore metrics](.data/gf2.png)
+
+Explore logs Loki:  
+![Explore logs](.data/gf3.png)
+
+Log parsing:  
+![Log parsing](.data/gf4.png)

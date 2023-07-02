@@ -52,9 +52,14 @@ services:
     volumes:
       - ./grafana/grafana-datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
     environment:
-      - GF_AUTH_ANONYMOUS_ENABLED=true
-      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
-      - GF_AUTH_DISABLE_LOGIN_FORM=true
+#      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ENABLED=false
+      - GF_AUTH_BASIC_ENABLED=true
+#      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_SECURITY_ADMIN_USER=Admin
+      - GF_SECURITY_ADMIN_PASSWORD=${GF_PASSWORD}
+      - GF_USERS_ALLOW_SIGN_UP=false
+#      - GF_AUTH_DISABLE_LOGIN_FORM=true
       - GF_FEATURE_TOGGLES_ENABLE=traceqlEditor
       - GF_SERVER_HTTP_PORT=3002
     ports:
